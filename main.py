@@ -5,9 +5,6 @@ while True:
     print("1. Memasukkan Biodata dan Memesan Tiket")
     print("2. Mengecek Jadwal Penerbangan")
     print("3. Menambahkan Barang Bawaan")
-    print("4. Menambahkan Makanan")
-    print("5. Melakukan Pembayaran")
-    print("0. Keluar")
     choice = input("Masukkan pilihan Anda: ")
 
     if choice == "1":
