@@ -1,10 +1,29 @@
+import random
+import string
+
+def generate_ticket_id():
+    letters = string.ascii_uppercase
+    digits = string.digits
+    idPass = random.choice(letters) + "".join(random.choices(digits, k=9))
+    return idPass
+
+def cek_jadwal(ticket_id, tickets):
+    for ticket in tickets:
+        if ticket['ticket_id'] == ticket_id:
+            return ticket
+    return None
+
+tickets = []
+
 while True:
     print("==============AVIANOS================")
-    print("Welcome to our very narcistic Ticketing Apps, heh. You can choose just two departs from here, bozzo~")
+    print("Welcome Avianos, heh. You can choose just two departs from here, bozzo~")
     print("Menu:")
     print("1. Memasukkan Biodata dan Memesan Tiket")
     print("2. Mengecek Jadwal Penerbangan")
     print("3. Menambahkan Barang Bawaan")
+    print("4. Menambahkan Makanan")
+    print("5. Melakukan Pembayaran")
     choice = input("Masukkan pilihan Anda: ")
 
     if choice == "1":
@@ -12,7 +31,7 @@ while True:
         print("1. Domestik")
         print("2. Internasional")
         flight_type = input("Masukkan pilihan Anda: ")
-print ("hola")
+
         if flight_type == "1":
             print("Masukkan Biodata terlebih dahulu")
             bioName = input("Silahkan tulis nama lengkap: ")
