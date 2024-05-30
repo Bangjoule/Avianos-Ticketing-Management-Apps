@@ -156,8 +156,7 @@ while True:
                     print("Penerbangan dibatalkan.")
                     break
             else:
-                print("Pilihan tidak valid. Silakan coba lagi.")
-#BELUMCOMMITELIF2
+                print("Pilihan tidak valid. Silakan coba lagi."
 
 elif choice == "3":
         ticket_id = input("Masukkan Ticket ID Anda: ")
