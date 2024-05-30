@@ -157,3 +157,37 @@ while True:
                     break
             else:
                 print("Pilihan tidak valid. Silakan coba lagi.")
+#BELUMCOMMITELIF2
+
+elif choice == "3":
+        ticket_id = input("Masukkan Ticket ID Anda: ")
+        ticket = cek_jadwal(ticket_id, tickets)
+        if ticket:
+            print("Pilih opsi barang bawaan yang ingin dibawa:")
+            options = {
+                1: {'weight': 20, 'price': 300000},
+                2: {'weight': 25, 'price': 337500},
+                3: {'weight': 30, 'price': 375000},
+                4: {'weight': 35, 'price': 412500}
+            }
+
+            for key, option in options.items():
+                print(f"{key}. {option['weight']} kg dengan harga Rp. {option['price']:,.2f}")
+
+            while True:
+                try:
+                    choice = int(input("Masukkan nomor pilihan (ketik '0' jika ingin batal): ").strip())
+                    if choice == 0:
+                        print("Pembatalan pilihan barang bawaan.")
+                        break
+                    elif choice in options:
+                        selected_option = options[choice]
+                        ticket['baggage'] = {'weight': selected_option['weight'], 'price': selected_option['price']}
+                        print(f"Barang bawaan {selected_option['weight']} kg dengan harga Rp. {selected_option['price']:,.2f} telah ditambahkan.")
+                        break
+                    else:
+                        print("Pilihan tidak valid. Silakan coba lagi.")
+                except ValueError:
+                    print("Input tidak valid. Silakan masukkan nomor yang sesuai.")
+        else:
+            print("Ticket ID tidak ditemukan.")
