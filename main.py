@@ -55,3 +55,105 @@ while True:
             if retry_flight_type != "yes":
                 print("Mengarahkan kembali ke menu utama.")
                 continue
+while True:
+            print(f"Selamat datang, {bioName}. Mau kemana kita hari ini?")
+            
+            if flight_type == "1":
+                print("1. Bandung")
+                print("2. Jogja")
+                print("3. Denpasar")
+                print("4. Jayapura")
+                print("5. Batam")
+                print("6. Pontianak")
+                print("7. Surabaya")
+                print("8. Semarang")
+                print("9. Sulawesi")
+                print("10. Labuan Bajau")
+            elif flight_type == "2":
+                print("11. Singapura")
+                print("12. Australia")
+                print("13. Thailand")
+                print("14. Brunei")
+                print("15. Jepang")
+                print("16. Arab")
+                print("17. Cina/Beijing")
+                print("18. Kamboja")
+                print("19. Malaysia")
+                print("20. Filipina")
+                print("21. Myanmar")
+                print("22. Vietnam")
+                print("23. Laos")
+                print("24. Turki")
+                print("25. Korea Selatan")
+            
+            selection = int(input("Silahkan pilih destinasi yang ingin dituju: "))
+            
+            if flight_type == "1" and selection > 10:
+                print("Maaf, pilihan tersebut tidak ada pada opsi domestik.")
+                retry = input("Apakah Anda ingin memilih ulang destinasi? [Yes/No]").strip().lower()
+                if retry == "yes":
+                    continue
+                else:
+                    print("Mengarahkan kembali ke menu utama.")
+                    break
+            elif flight_type == "2" and selection <= 10:
+                print("Maaf, pilihan tersebut tidak ada pada opsi internasional.")
+                retry = input("Apakah Anda ingin memilih ulang destinasi? [Yes/No]").strip().lower()
+                if retry == "yes":
+                    continue
+                else:
+                    print("Mengarahkan kembali ke menu utama.")
+                    break
+
+            destination_prices = {
+                1: ("Bandung", 800000),
+                2: ("Jogja", 900000),
+                3: ("Denpasar", 950000),
+                4: ("Jayapura", 1500000),
+                5: ("Batam", 700000),
+                6: ("Pontianak", 650000),
+                7: ("Surabaya", 850000),
+                8: ("Semarang", 800000),
+                9: ("Sulawesi", 1300000),
+                10: ("Labuan Bajau", 1400000),
+                11: ("Singapura", 2500000),
+                12: ("Australia", 5000000),
+                13: ("Thailand", 3000000),
+                14: ("Brunei", 3500000),
+                15: ("Jepang", 5500000),
+                16: ("Arab", 8500000),
+                17: ("Cina/Beijing", 5000000),
+                18: ("Kamboja", 3500000),
+                19: ("Malaysia", 2750000),
+                20: ("Filipina", 4000000),
+                21: ("Myanmar", 3250000),
+                22: ("Vietnam", 3500000),
+                23: ("Laos", 3750000),
+                24: ("Turki", 10000000),
+                25: ("Korea Selatan", 7750000)
+            }
+
+            if selection in destination_prices:
+                destination, price = destination_prices[selection]
+                print(f"Penerbangan ke {destination} untuk penumpang bernama {bioName} dengan asal {bioDom}, apakah yakin ingin melanjutkan dengan opsi ini? [Yes/No]")
+                confirm = input("[Yes/No]").strip().lower()
+                if confirm == "yes":
+                    print(f"Penerbangan anda sudah dikonfirmasi dengan harga Rp. {price:,.2f}")
+                    ticket_id = generate_ticket_id()
+                    print("Your ticket ID is:", ticket_id)
+                    tickets.append({
+                        'ticket_id': ticket_id,
+                        'name': bioName,
+                        'origin': bioDom,
+                        'destination': destination,
+                        'price': price,
+                        'baggage': None,
+                        'food': [],
+                        'food_price': 0
+                    })
+                    break
+                else:
+                    print("Penerbangan dibatalkan.")
+                    break
+            else:
+                print("Pilihan tidak valid. Silakan coba lagi.")
