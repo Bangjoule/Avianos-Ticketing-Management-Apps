@@ -190,6 +190,7 @@ elif choice == "3":
                     print("Input tidak valid. Silakan masukkan nomor yang sesuai.")
         else:
             print("Ticket ID tidak ditemukan.")
+            
 elif choice == "4":
         ticket_id = input("Masukkan Ticket ID Anda: ")
         ticket = cek_jadwal(ticket_id, tickets)
@@ -235,3 +236,63 @@ elif choice == "4":
                 print("Tidak memesan makanan.")
         else:
             print("Ticket ID tidak ditemukan.")
+            
+elif choice == "5":
+        ticket_id = input("Masukkan Ticket ID Anda: ")
+        ticket = cek_jadwal(ticket_id, tickets)
+        if ticket:
+            print(f"Ticket ID: {ticket['ticket_id']}")
+            print(f"Nama Penumpang: {ticket['name']}")
+            print(f"Kota/Negara Asal: {ticket['origin']}")
+            print(f"Tujuan: {ticket['destination']}")
+            print(f"Harga Tiket: Rp. {ticket['price']:,.2f}")
+            if ticket['baggage']:
+                print(f"Barang Bawaan: {ticket['baggage']['weight']} kg dengan harga Rp. {ticket['baggage']['price']:,.2f}")
+            else:
+                print("Anda tidak membawa barang apa-apa.")
+            print(f"Total Harga Makanan: Rp. {ticket['food_price']:,.2f}")
+            total_harga = ticket['price'] + (ticket['baggage']['price'] if ticket['baggage'] else 0) + ticket['food_price']
+            print(f"Total Bayar: Rp. {total_harga:,.2f}")
+
+            print("\nMetode Pembayaran:")
+            print("1. Kartu Kredit")
+            print("2. Transfer Bank")
+            payment_choice = input("Masukkan pilihan Anda: ")
+
+            if payment_choice == "1":
+                print("Masukkan nomor kartu kredit Anda: ")
+                card_number = input()
+                print("Masukkan CVV Anda: ")
+                cvv = input()
+                print(f"Pembayaran dengan kartu kredit {card_number} berhasil.")
+                print("Proses pemesanan tiket selesai.")
+                break
+
+            elif payment_choice == "2":
+                while True:
+                    try:
+                        print("Masukkan nama bank tujuan: ")
+                        bank_name = input()
+                        print("Masukkan nomor rekening tujuan: ")
+                        account_number = int(input())
+                        break
+                    except ValueError:
+                        print("Nomor rekening tidak valid. Harap masukkan nomor rekening yang benar.")
+
+                print(f"Pembayaran dengan transfer bank ke {bank_name} dengan nomor rekening {account_number} berhasil.")
+                print("Proses pemesanan tiket selesai.")
+                break
+
+            else:
+                print("Pilihan tidak valid. Silakan coba lagi.")
+
+        else:
+            print("Ticket ID tidak ditemukan.")
+
+    
+    elif choice == "0":
+        print("Terima kasih! Program selesai.")
+        break
+    
+    else:
+        print("Input tidak valid. Silakan coba lagi.")
