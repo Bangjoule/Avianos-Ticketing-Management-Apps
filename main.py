@@ -156,8 +156,29 @@ while True:
                     print("Penerbangan dibatalkan.")
                     break
             else:
-                print("Pilihan tidak valid. Silakan coba lagi."
+                print("Pilihan tidak valid. Silakan coba lagi.")
 
+ elif choice == "2":
+        ticket_id = input("Masukkan Ticket ID Anda: ")
+        ticket = cek_jadwal(ticket_id, tickets)
+        if ticket:
+            print(f"Ticket ID: {ticket['ticket_id']}")
+            print(f"Nama Penumpang: {ticket['name']}")
+            print(f"Kota/Negara Asal: {ticket['origin']}")
+            print(f"Tujuan: {ticket['destination']}")
+            print(f"Harga: Rp. {ticket['price']:,.2f}")
+            if ticket['baggage']:
+                print(f"Barang Bawaan: {ticket['baggage']['weight']} kg dengan harga Rp. {ticket['baggage']['price']:,.2f}")
+            else:
+                print("Anda tidak membawa barang apa-apa.")
+            if ticket['food']:
+                print("Makanan: ", ", ".join(ticket['food']))
+                print(f"Total Harga Makanan: Rp. {ticket['food_price']:,.2f}")
+            else:
+                print("Anda tidak memesan makanan.")
+        else:
+            print("Ticket ID tidak ditemukan.")       
+            
 elif choice == "3":
         ticket_id = input("Masukkan Ticket ID Anda: ")
         ticket = cek_jadwal(ticket_id, tickets)
