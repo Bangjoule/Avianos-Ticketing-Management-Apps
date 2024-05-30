@@ -190,3 +190,48 @@ elif choice == "3":
                     print("Input tidak valid. Silakan masukkan nomor yang sesuai.")
         else:
             print("Ticket ID tidak ditemukan.")
+elif choice == "4":
+        ticket_id = input("Masukkan Ticket ID Anda: ")
+        ticket = cek_jadwal(ticket_id, tickets)
+        if ticket:
+            print("Apakah Anda ingin memesan makanan? [Yes/No]")
+            if input().strip().lower() == 'yes':
+                if ticket['destination'] in ["Bandung", "Jogja", "Denpasar", "Jayapura", "Batam", "Pontianak", "Surabaya", "Semarang", "Sulawesi", "Labuan Bajau"]:
+                    print("Pilihan makanan untuk penerbangan domestik:")
+                    food_menu = {
+                        "Kacang": 10000,
+                        "Snack Chiki": 15000,
+                        "Roti": 20000,
+                        "Air Putih": 5000
+                    }
+                else:
+                    print("Pilihan makanan untuk penerbangan internasional:")
+                    food_menu = {
+                        "Nasi Goreng": 50000,
+                        "Mie Goreng": 45000,
+                        "Steak Ayam": 75000,
+                        "Spagethi": 100000,
+                        "Nasi Ayam Goreng": 75000,
+                        "Kopi": 45000,
+                        "Coke": 40000,
+                        "Fuji Water": 40000
+                    }
+                
+                for item, price in food_menu.items():
+                    print(f"{item}: Rp. {price:,.2f}")
+                
+                print("Masukkan makanan yang ingin dipesan (ketik 'selesai' jika sudah):")
+                while True:
+                    food = input("Makanan: ").strip()
+                    if food.lower() == 'selesai':
+                        break
+                    if food in food_menu:
+                        ticket['food'].append(food)
+                        ticket['food_price'] += food_menu[food]
+                    else:
+                        print("Makanan tidak tersedia. Silakan pilih dari menu.")
+                print("Makanan telah ditambahkan.")
+            else:
+                print("Tidak memesan makanan.")
+        else:
+            print("Ticket ID tidak ditemukan.")
