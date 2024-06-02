@@ -55,6 +55,8 @@ while True:
             if retry_flight_type != "yes":
                 print("Mengarahkan kembali ke menu utama.")
                 continue
+            else:
+                continue
 while True:
             print(f"Selamat datang, {bioName}. Mau kemana kita hari ini?")
             
